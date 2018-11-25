@@ -8,6 +8,7 @@
     <title>{{ title }}</title>
     <link rel="stylesheet" type="text/css" href="../assets/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/new-note.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
 
@@ -22,6 +23,17 @@
         </nav>
         <div class="main-content">
             <h1 class="main-content__heading">{{ content.title }}</h1>
+            <div class="form-wrapper">
+                <form class="form js-add-note-form">
+                    <label for="title" class="form__label">Title</label>
+                    <input name="title" id="title" type="text" class="form__input">
+                    <label for="content" class="form__label">Notes</label>
+                    <textarea name="content" id="content" minlength="1" maxlength="2000" row="6" cols="200" title="Notes" class="form__textarea"></textarea>
+                    <label for="file" class="form__label">Add image</label>
+                    <input type="file" name="file" id="file" class="form__input">
+                    <button type="submit" class="form__button">Save</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>

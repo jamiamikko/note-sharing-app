@@ -1,0 +1,46 @@
+@import './helpers/variables.scss';
+@import './helpers/mixins.scss';
+
+.form {
+  display: flex;
+  flex-direction: column;
+
+  &-wrapper {
+    max-width: 60rem;
+    margin: 0 auto;
+  }
+
+  &__input {
+    margin-bottom: 1rem;
+  }
+
+  &__textarea {
+    margin-bottom: 1rem;
+    overflow: auto;
+    vertical-align: top;
+    resize: vertical;
+  }
+
+  &__label {
+    font-family: $baseFontFamily;
+    margin-bottom: 0.75rem;
+  }
+
+  &__button {
+    font-family: $baseFontFamily;
+    background: none;
+    background-color: $gray;
+    color: $white;
+    border: none;
+    padding: 0.75rem 0;
+    margin-top: 1rem;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      border: 1px solid $gray;
+      color: $grayDark;
+      background-color: $white;
+    }
+  }
+}
