@@ -3,17 +3,23 @@
 require('dotenv').config();
 const path = require('path');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+
 const index = require('./routes/index');
 const notes = require('./routes/notes');
 
 const express = require('express');
 const mustacheExpress = require('mustache-express');
+
 const app = express();
 
 app.engine('mustache', mustacheExpress());
 app.set('view engine', 'mustache');
 
 app.set('views', path.join(__dirname, 'views'));
+
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -47,3 +53,8 @@ db.on('error', (err) => {
 
 app.use('/', index);
 app.use('/notes', notes);
+
+app.use((err, req, res, next) => {
+  console.log(err);
+  res.status(400).send({error: err.message});
+});

@@ -7,7 +7,7 @@ const notesDataSchema = new mongoose.Schema({
   content: {type: String, required: true},
   thumbnail: String,
   image: String,
-  original: {type: String, required: true}
+  original: String
 });
 
 module.exports = mongoose.model('notes', notesDataSchema);
