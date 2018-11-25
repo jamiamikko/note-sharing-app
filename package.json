@@ -1,0 +1,43 @@
+{
+  "name": "note-sharing-app",
+  "version": "1.0.0",
+  "description": "Application for creating and sharing notes",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamiamikko/note-sharing-app.git"
+  },
+  "keywords": [
+    "express",
+    "node.js",
+    "sharing",
+    "notes"
+  ],
+  "author": "Mikko Jämiä",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamiamikko/note-sharing-app/issues"
+  },
+  "homepage": "https://github.com/jamiamikko/note-sharing-app#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "dotenv": "^6.1.0",
+    "eslint": "^5.9.0",
+    "eslint-config-google": "^0.11.0",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^4.0.2",
+    "helmet": "^3.15.0",
+    "mongoose": "^5.3.13",
+    "multer": "^1.4.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "sharp": "^0.21.0",
+    "socket.io": "^2.1.1"
+  }
+}
