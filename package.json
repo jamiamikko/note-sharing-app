@@ -4,7 +4,9 @@
   "description": "Application for creating and sharing notes",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "supervisor server.js",
+    "watch": "gulp"
   },
   "repository": {
     "type": "git",
