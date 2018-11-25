@@ -12,7 +12,7 @@
 
   &__input {
     margin-bottom: 1rem;
-    min-height: 2reM;
+    min-height: 2rem;
   }
 
   &__textarea {
@@ -43,5 +43,19 @@
       color: $grayDark;
       background-color: $white;
     }
+  }
+}
+
+.message-box {
+  padding: 1rem;
+
+  &--success {
+    background-color: $greenLight;
+    color: $green;
+  }
+
+  &--error {
+    background-color: $redLight;
+    color: $red;
   }
 }

@@ -1,6 +1,10 @@
 'use strict';
 
 const $form = document.querySelector('.js-add-note-form');
+
+const $successMessage = document.querySelector('.js-success-message');
+const $errorMessage = document.querySelector('.js-error-message');
+
 const $inputs = {
   title: document.querySelector('#title'),
   content: document.querySelector('#content')
@@ -20,11 +24,14 @@ const submitForm = (event) => {
       method: 'PUT',
       body: data
     })
-      .then((res) => {
-        console.log(res);
+      .then(() => {
+        $form.classList.add('is-hidden');
+        $successMessage.classList.remove('is-hidden');
       })
       .catch((err) => {
         console.log(err);
+        $form.classList.add('is-hidden');
+        $errorMessage.classList.remove('is-hidden');
       });
   }
 };
