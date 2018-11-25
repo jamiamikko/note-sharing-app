@@ -8,17 +8,38 @@
     <title>{{ title }}</title>
     <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
 
 <body>
     <div id="app">
         <nav class="main-navigation">
             <ul class="main-navigation__items">
-                <li class="main-navigation__item"><button>Home</button></li>
-                <li class="main-navigation__item"><button>New note</button></li>
+                {{#content.navigation}}
+                <li class="main-navigation__item"><button>{{.}}</button></li>
+                {{/content.navigation}}
             </ul>
         </nav>
-        <h1>{{ title }}</h1>
+        <div class="main-content">
+            <h1 class="main-content__heading">{{ title }}</h1>
+            <div class="note-list">
+                <div class="note-card">
+                    <h2 class="note-card__heading">Test</h2>
+                </div>
+                <div class="note-card">
+                    <h2 class="note-card__heading">Test</h2>
+                </div>
+                <div class="note-card">
+                    <h2 class="note-card__heading">Test</h2>
+                </div>
+                <div class="note-card">
+                    <h2 class="note-card__heading">Test</h2>
+                </div>
+                <div class="note-card">
+                    <h2 class="note-card__heading">Test</h2>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>
