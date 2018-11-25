@@ -4,6 +4,7 @@ require('dotenv').config();
 const path = require('path');
 
 const index = require('./routes/index');
+const newNote = require('./routes/newNote');
 
 const express = require('express');
 const mustacheExpress = require('mustache-express');
@@ -23,3 +24,4 @@ app.listen(port, () => {
 });
 
 app.use('/', index);
+app.use('/new', newNote);
