@@ -1,0 +1,5 @@
+{
+  "ignore": [".git", "node_modules/**/node_modules"],
+  "watch": ["server.js", "views/", "routes/", "public/"],
+  "ext": "js, css, json, mustache"
+}

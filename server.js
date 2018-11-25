@@ -9,20 +9,16 @@ const express = require('express');
 const mustacheExpress = require('mustache-express');
 const app = express();
 
-app.engine(
-  'mustache',
-  mustacheExpress({
-    extname: 'mustache',
-    defaultLayout: 'layout',
-    layoutsDir: __dirname + '/views/layouts/'
-  })
-);
-app.set('views', path.join(__dirname, 'views'));
+app.engine('mustache', mustacheExpress());
 app.set('view engine', 'mustache');
+
+app.set('views', path.join(__dirname, 'views'));
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 const port = process.env.PORT || 3000;
 
-const server = app.listen(port, () => {
+app.listen(port, () => {
   console.log('Listening to port' + port);
 });
 

@@ -1,0 +1,33 @@
+@import './helpers/variables.scss';
+
+.main-navigation {
+  background-color: $grayDark;
+
+  &__items {
+    display: flex;
+    margin: 0 auto;
+    padding: 0;
+    max-width: 60em;
+    width: 100%;
+    text-align: center;
+    list-style: none;
+  }
+
+  &__item {
+    min-height: 4rem;
+    padding: 0;
+    margin: 0 1rem;
+
+    button {
+      height: 100%;
+      background: none;
+      border: none;
+      color: $white;
+
+      &:hover,
+      &:focus {
+        border-bottom: 2px inset $white;
+      }
+    }
+  }
+}
