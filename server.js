@@ -2,9 +2,9 @@
 
 require('dotenv').config();
 const path = require('path');
-
+const mongoose = require('mongoose');
 const index = require('./routes/index');
-const newNote = require('./routes/newNote');
+const notes = require('./routes/notes');
 
 const express = require('express');
 const mustacheExpress = require('mustache-express');
@@ -23,5 +23,27 @@ app.listen(port, () => {
   console.log('Listening to port' + port);
 });
 
+mongoose
+  .connect(
+    `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${
+      process.env.DB_HOST
+    }:${process.env.DB_PORT}/notes`,
+    {useNewUrlParser: true}
+  )
+  .then((db) => {})
+  .catch((err) => {
+    console.log(err);
+  });
+
+const db = mongoose.connection;
+
+db.once('open', () => {
+  console.log('Connected to MongoDB');
+});
+
+db.on('error', (err) => {
+  console.log(err);
+});
+
 app.use('/', index);
-app.use('/new', newNote);
+app.use('/notes', notes);
