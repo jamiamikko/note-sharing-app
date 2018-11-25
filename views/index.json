@@ -7,7 +7,7 @@
     },
     {
       "title": "New note",
-      "href": "/new"
+      "href": "/notes/new"
     }
   ]
 }
