@@ -1,6 +1,7 @@
 'use strict';
 
 const baseUrl = 'http://localhost:3000/notes';
+const $noteList = document.querySelector('.js-note-list');
 
 const getNotesData = () =>
   new Promise((resolve, reject) => {
@@ -15,10 +16,26 @@ const getNotesData = () =>
       });
   });
 
+const printCards = function(data) {
+  const templateString = document.querySelector('#note-card-template')
+    .innerHTML;
+
+  data.forEach((card) => {
+    const template = templateString
+      .replace('{heading}', card.title)
+      .replace('{image}', card.thumbnail)
+      .replace('{date}', card.time)
+      .replace('{creator}', card.creator)
+      .replace('{text}', card.content);
+
+    $noteList.innerHTML += template;
+  });
+};
+
 const init = () => {
   getNotesData()
     .then((json) => {
-      console.log(json);
+      printCards(json);
     })
     .catch((err) => {
       console.log(err);

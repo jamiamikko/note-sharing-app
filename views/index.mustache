@@ -25,7 +25,7 @@
       </nav>
       <div class="main-content">
         <h1 class="main-content__heading">{{ content.title }}</h1>
-        <div class="note-list">
+        <div class="note-list js-note-list">
           <div class="note-card">
             <h2 class="note-card__heading">Test</h2>
             <img
@@ -45,6 +45,24 @@
         </div>
       </div>
     </div>
+    <script id="note-card-template" type="text/template">
+      <div class="note-card">
+        <h2 class="note-card__heading">{heading}</h2>
+        <img
+          class="note-card__image"
+          src="{image}"
+          alt=""
+        />
+        <div class="note-card__info">
+          <p class="note-card__date">{date}</p>
+          <p class="note-card__creator">By: {creator}</p>
+        </div>
+        <p class="note-card__teaser-text">
+          {text}
+        </p>
+        <button class="note-card__button">View</button>
+      </div>
+    </script>
     <script src="../assets/js/home.min.js"></script>
   </body>
 </html>
