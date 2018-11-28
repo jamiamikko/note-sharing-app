@@ -5,6 +5,7 @@ const path = require('path');
 const multer = require('multer');
 const uuid = require('uuid/v4');
 const moment = require('moment');
+const fs = require('fs');
 
 const content = require('../views/newNote.json');
 
@@ -64,11 +65,11 @@ router.put('/', upload, (req, res, next) => {
     original: req.file.path.replace('public/', '')
   };
 
-  convertImage(req.file, 320, 300)
+  convertImage(req.file, 350, 200)
     .then((response) => {
       data.thumbnail = response.replace('public/', '');
 
-      convertImage(req.file, 768, 720)
+      convertImage(req.file, 768, 432)
         .then((response) => {
           data.image = response.replace('public/', '');
 
@@ -86,6 +87,34 @@ router.put('/', upload, (req, res, next) => {
       console.log(err);
       next(err);
     });
+});
+
+router.delete('/:id', (req, res, next) => {
+  const id = req.params.id;
+
+  NotesData.findOne({_id: id}, (err, data) => {
+    if (err) {
+      console.log(err);
+      next(err);
+    } else {
+      const imagePaths = [data.original, data.thumbnail, data.image];
+
+      imagePaths.forEach((path) => {
+        fs.unlink('public/' + path, (err) => {
+          if (err) next(err);
+        });
+      });
+
+      NotesData.deleteOne({_id: id}, (err) => {
+        if (err) {
+          console.log(err);
+          next(err);
+        } else {
+          res.sendStatus(200);
+        }
+      });
+    }
+  });
 });
 
 router.get('/new', (req, res) => {

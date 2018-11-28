@@ -14,7 +14,7 @@
   &-card {
     display: flex;
     flex-direction: column;
-    flex: 0 1 22%;
+    flex: 0 1 21%;
     border: 1px solid $gray;
     margin-right: 1%;
     margin-bottom: 1rem;
@@ -39,7 +39,6 @@
 
     &__image {
       margin: 0 auto 1rem auto;
-      width: auto;
       max-width: 100%;
       height: auto;
     }

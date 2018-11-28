@@ -16,12 +16,23 @@ const getNotesData = () =>
       });
   });
 
+const deleteCard = (id) => {
+  fetch(baseUrl + '/' + id, {method: 'DELETE'})
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 const printCards = function(data) {
   const templateString = document.querySelector('#note-card-template')
     .innerHTML;
 
   data.forEach((card) => {
     const template = templateString
+      .replace('{id}', card._id)
       .replace('{heading}', card.title)
       .replace('{image}', card.thumbnail)
       .replace('{date}', card.time)
@@ -29,6 +40,18 @@ const printCards = function(data) {
       .replace('{text}', card.content);
 
     $noteList.innerHTML += template;
+  });
+
+  [].forEach.call($noteList.querySelectorAll('.js-delete-card'), ($button) => {
+    const id = $button.parentNode.dataset.cardId;
+
+    $button.addEventListener(
+      'click',
+      () => {
+        deleteCard(id);
+      },
+      false
+    );
   });
 };
 
