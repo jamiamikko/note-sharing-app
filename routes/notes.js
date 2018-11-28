@@ -61,32 +61,45 @@ router.put('/', upload, (req, res, next) => {
     time: date,
     creator: req.body.creator,
     title: req.body.title,
-    content: req.body.content,
-    original: req.file.path.replace('public/', '')
+    content: req.body.content
   };
 
-  convertImage(req.file, 350, 200)
-    .then((response) => {
-      data.thumbnail = response.replace('public/', '');
+  if (req.file) {
+    data.original = req.file.path.replace('public/', '');
+    convertImage(req.file, 350, 200)
+      .then((response) => {
+        data.thumbnail = response.replace('public/', '');
 
-      convertImage(req.file, 768, 432)
-        .then((response) => {
-          data.image = response.replace('public/', '');
+        convertImage(req.file, 768, 432)
+          .then((response) => {
+            data.image = response.replace('public/', '');
 
-          const noteData = new NotesData(data);
-          noteData.save().then(() => {
-            res.sendStatus(200);
+            const noteData = new NotesData(data);
+            noteData.save().then(() => {
+              res.sendStatus(200);
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+            next(err);
           });
-        })
-        .catch((err) => {
-          console.log(err);
-          next(err);
-        });
-    })
-    .catch((err) => {
-      console.log(err);
-      next(err);
-    });
+      })
+      .catch((err) => {
+        console.log(err);
+        next(err);
+      });
+  } else {
+    const noteData = new NotesData(data);
+    noteData
+      .save()
+      .then(() => {
+        res.sendStatus(200);
+      })
+      .catch((err) => {
+        console.log(err);
+        next(err);
+      });
+  }
 });
 
 router.delete('/:id', (req, res, next) => {
