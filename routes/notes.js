@@ -7,12 +7,26 @@ const uuid = require('uuid/v4');
 const moment = require('moment');
 const fs = require('fs');
 
-const content = require('../views/newNote.json');
+const newNoteContent = require('../views/newNote.json');
+const viewNoteCotent = require('../views/viewNote.json');
 
 const NotesData = require('../db/Note');
 
 router.get('/', (req, res, next) => {
   NotesData.find({}, (err, data) => {
+    if (err) {
+      console.log(err);
+      next(err);
+    } else {
+      res.send(data);
+    }
+  });
+});
+
+router.get('/:id', (req, res, next) => {
+  const id = req.params.id;
+
+  NotesData.findById(id, (err, data) => {
     if (err) {
       console.log(err);
       next(err);
@@ -133,7 +147,14 @@ router.delete('/:id', (req, res, next) => {
 router.get('/new', (req, res) => {
   return res.render('newNote', {
     title: 'Note sharing app - New note',
-    content: content
+    content: newNoteContent
+  });
+});
+
+router.get('/view/:id', (req, res) => {
+  return res.render('viewNote', {
+    title: 'Note sharing app - View note',
+    content: viewNoteCotent
   });
 });
 

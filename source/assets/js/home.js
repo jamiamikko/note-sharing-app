@@ -32,7 +32,7 @@ const printCards = function(data) {
 
   data.forEach((card) => {
     const template = templateString
-      .replace('{id}', card._id)
+      .replace(/{id}/g, card._id)
       .replace('{heading}', card.title)
       .replace('{image}', card.thumbnail)
       .replace('{date}', card.time)

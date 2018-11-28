@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{ title }}</title>
+    <link rel="stylesheet" type="text/css" href="../../assets/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="../../assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../assets/css/new-note.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div id="app">
+      <nav class="main-navigation">
+        <ul class="main-navigation__items">
+          {{#content.navigation}}
+          <li class="main-navigation__item">
+            <a href="{{href}}">{{ title }}</a>
+          </li>
+          {{/content.navigation}}
+        </ul>
+      </nav>
+      <div class="main-content">
+        <h1 class="main-content__heading">{{ content.title }}</h1>
+      </div>
+    </div>
+    <script src="../../assets/js/view.min.js"></script>
+  </body>
+</html>
