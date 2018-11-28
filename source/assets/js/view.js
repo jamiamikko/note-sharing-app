@@ -4,7 +4,7 @@ const baseUrl = 'http://localhost:3000/notes';
 
 const getNoteById = (id) =>
   new Promise((resolve, reject) => {
-    fetch(baseUrl + '/' + id, {
+    fetch(baseUrl + '/get/' + id, {
       method: 'GET'
     })
       .then((res) => {

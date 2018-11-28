@@ -23,7 +23,7 @@ router.get('/', (req, res, next) => {
   });
 });
 
-router.get('/:id', (req, res, next) => {
+router.get('/get/:id', (req, res, next) => {
   const id = req.params.id;
 
   NotesData.findById(id, (err, data) => {
