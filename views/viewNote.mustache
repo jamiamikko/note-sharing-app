@@ -52,30 +52,27 @@
             <h2 class="main-content__heading">
               Share your opinions on this note
             </h2>
-            <div class="chat__window">
-              <div class="chat__row">
-                <p class="chat__sender">Mikkoj:</p>
-                <p class="chat__comment">"This is great"</p>
-              </div>
-              <div class="chat__row">
-                <p class="chat__sender">User:</p>
-                <p class="chat__comment">"It is"</p>
-              </div>
-            </div>
+            <div class="chat__window js-chat-window"></div>
             <div class="chat__input-wrapper">
-              <input
-                type="text"
-                name="message"
-                id="message"
-                class="chat__input"
-                placeholder="Type your comment here"
-              />
-              <button class="chat__send-button">Send</button>
+              <form action="" class="js-chat-form">
+                <input
+                  type="text"
+                  name="message"
+                  id="message"
+                  class="chat__input js-input"
+                  placeholder="Type your comment here"
+                />
+                <button type="submit" class="chat__send-button js-send">
+                  Send
+                </button>
+              </form>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <script src="/socket.io/socket.io.js"></script>
     <script src="../../assets/js/view.min.js"></script>
+    <script src="../../assets/js/rtc.min.js"></script>
   </body>
 </html>

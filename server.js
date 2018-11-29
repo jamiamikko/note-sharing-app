@@ -4,6 +4,7 @@ require('dotenv').config();
 const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const socket = require('socket.io');
 
 const index = require('./routes/index');
 const notes = require('./routes/notes');
@@ -25,8 +26,38 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const port = process.env.PORT || 3000;
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log('Listening to port' + port);
+});
+
+const io = socket(server);
+
+io.on('connection', (socket) => {
+  console.log('There is a connection', socket.id);
+
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+
+  socket.on('message', (message) => {
+    console.log('Message: ' + message);
+    socket.broadcast.emit('message', message);
+  });
+
+  socket.on('call', (message) => {
+    console.log(message);
+    socket.broadcast.emit('call', message);
+  });
+
+  socket.on('answer', (message) => {
+    console.log(message);
+    socket.broadcast.emit('answer', message);
+  });
+
+  socket.on('candidate', (message) => {
+    console.log('candidate message recieved!');
+    socket.broadcast.emit('candidate', message);
+  });
 });
 
 mongoose
