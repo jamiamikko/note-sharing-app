@@ -3,9 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <title>{{ title }}</title>
-    <link rel="stylesheet" type="text/css" href="../../assets/css/normalize.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../assets/css/normalize.css"
+    />
     <link rel="stylesheet" type="text/css" href="../../assets/css/style.css" />
-    <link rel="stylesheet" type="text/css" href="../../assets/css/new-note.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../assets/css/view-note.css"
+    />
     <link
       href="https://fonts.googleapis.com/css?family=Open+Sans"
       rel="stylesheet"
@@ -25,6 +33,20 @@
       </nav>
       <div class="main-content">
         <h1 class="main-content__heading">{{ content.title }}</h1>
+        <div class="view-note">
+          <div class="view-note__wrapper">
+            <div class="view-note__heading-wrapper">
+              <h2 class="view-note__heading js-note-heading"></h2>
+              <button class="view-note__button js-edit-button">Edit</button>
+            </div>
+            <img alt="" src="" class="view-note__image js-note-image" />
+            <div class="view-note__text-wrapper">
+              <p class="view-note__date js-note-date"></p>
+              <p class="view-note__creator js-note-creator">Created by:</p>
+            </div>
+            <p class="view-note__content js-note-content"></p>
+          </div>
+        </div>
       </div>
     </div>
     <script src="../../assets/js/view.min.js"></script>
