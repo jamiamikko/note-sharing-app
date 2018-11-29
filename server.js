@@ -43,21 +43,6 @@ io.on('connection', (socket) => {
     console.log('Message: ' + message);
     socket.broadcast.emit('message', message);
   });
-
-  socket.on('call', (message) => {
-    console.log(message);
-    socket.broadcast.emit('call', message);
-  });
-
-  socket.on('answer', (message) => {
-    console.log(message);
-    socket.broadcast.emit('answer', message);
-  });
-
-  socket.on('candidate', (message) => {
-    console.log('candidate message recieved!');
-    socket.broadcast.emit('candidate', message);
-  });
 });
 
 mongoose
