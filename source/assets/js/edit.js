@@ -16,14 +16,18 @@ const baseUrl = 'http://localhost:3000/notes';
 const isValid = () =>
   $inputs.title.value !== '' && $inputs.content.value !== '';
 
+const getNoteId = () => {
+  return location.pathname.split('/notes/edit/')[1];
+};
+
 const submitForm = (event) => {
   event.preventDefault();
 
   if (isValid()) {
     const data = new FormData($form);
 
-    fetch(baseUrl, {
-      method: 'PUT',
+    fetch(baseUrl + '/' + getNoteId(), {
+      method: 'POST',
       body: data
     })
       .then(() => {

@@ -65,6 +65,74 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage: storage}).single('image');
 
+router.post('/:id', upload, (req, res, next) => {
+  if (!req.body) {
+    throw new Error('Invalid request');
+  }
+
+  const id = req.params.id;
+
+  NotesData.findById(id, (err, note) => {
+    if (err) {
+      console.log(err);
+      next(err);
+    } else {
+      if (req.file) {
+        const imagePaths = [note.original, note.thumbnail, note.image];
+
+        imagePaths.forEach((path) => {
+          fs.unlink('public/' + path, (err) => {
+            if (err) next(err);
+          });
+        });
+
+        const originalPath = req.file.path.replace('public/', '');
+
+        convertImage(req.file, 350, 200)
+          .then((response) => {
+            const thumbnailPath = response.replace('public/', '');
+
+            convertImage(req.file, 768, 432)
+              .then((response) => {
+                const imagePath = response.replace('public/', '');
+
+                note.set({
+                  title: req.body.title,
+                  content: req.body.content,
+                  thumbnail: thumbnailPath,
+                  original: originalPath,
+                  image: imagePath
+                });
+              })
+              .catch((err) => {
+                console.log(err);
+                next(err);
+              });
+          })
+          .catch((err) => {
+            console.log(err);
+            next(err);
+          });
+      } else {
+        note.set({
+          title: req.body.title,
+          content: req.body.content
+        });
+      }
+
+      note.save((err, updatedData) => {
+        if (err) {
+          console.log(err);
+          next(err);
+        } else {
+          console.log(updatedData);
+          res.send(updatedData);
+        }
+      });
+    }
+  });
+});
+
 router.put('/', upload, (req, res, next) => {
   if (!req.body.title || !req.body.creator || !req.body.content) {
     throw new Error('Invalid request');
