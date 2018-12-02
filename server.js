@@ -43,6 +43,11 @@ io.on('connection', (socket) => {
     console.log('Message: ' + message);
     socket.broadcast.emit('message', message);
   });
+
+  socket.on('join', (user) => {
+    console.log('User: ' + user);
+    socket.broadcast.emit('join', user);
+  });
 });
 
 mongoose

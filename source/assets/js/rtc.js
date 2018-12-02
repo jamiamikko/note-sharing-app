@@ -38,9 +38,18 @@ $form.addEventListener(
   false
 );
 
+socket.on('join', (user) => {
+  $chatBox.innerHTML +=
+    '<div class="chat__row"><p class="chat__comment">"' +
+    user +
+    ' joined"</p></div>';
+});
+
 socket.on('message', (message) => {
   $chatBox.innerHTML +=
     '<div class="chat__row"><p class="chat__sender">User:</p><p class="chat__comment">"' +
     message +
     '"</p></div>';
 });
+
+socket.emit('join', 'User');
