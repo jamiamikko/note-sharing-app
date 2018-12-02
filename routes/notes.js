@@ -70,6 +70,8 @@ router.post('/:id', upload, (req, res, next) => {
     throw new Error('Invalid request');
   }
 
+  console.log(req.user);
+
   const id = req.params.id;
 
   NotesData.findById(id, (err, note) => {
@@ -239,7 +241,8 @@ router.get('/view/:id', (req, res) => {
     return res.render('viewNote', {
       title: 'Note sharing app - View note',
       content: viewNoteCotent,
-      id: id
+      id: id,
+      username: req.user.username
     });
   }
 

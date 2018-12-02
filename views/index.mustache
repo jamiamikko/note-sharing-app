@@ -48,5 +48,10 @@
       </div>
     </script>
     <script src="../assets/js/home.min.js"></script>
+    <script type="text/javascript">
+      if(!sessionStorage.getItem('username')) {
+        sessionStorage.setItem('username', '{{username}}')
+      }
+    </script>
   </body>
 </html>

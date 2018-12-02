@@ -55,9 +55,8 @@ io.on('connection', (socket) => {
     console.log('user disconnected');
   });
 
-  socket.on('message', (message) => {
-    console.log('Message: ' + message);
-    socket.broadcast.emit('message', message);
+  socket.on('message', (messageObj) => {
+    socket.broadcast.emit('message', messageObj);
   });
 
   socket.on('join', (user) => {

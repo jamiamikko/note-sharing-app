@@ -37,7 +37,9 @@
           <div class="view-note__wrapper">
             <div class="view-note__heading-wrapper">
               <h2 class="view-note__heading js-note-heading"></h2>
-              <a href="/notes/edit/{{id}}" class="view-note__button js-edit-button"
+              <a
+                href="/notes/edit/{{id}}"
+                class="view-note__button js-edit-button"
                 >Edit</a
               >
             </div>
@@ -76,5 +78,10 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="../../assets/js/view.min.js"></script>
     <script src="../../assets/js/rtc.min.js"></script>
+    <script type="text/javascript">
+      if (!sessionStorage.getItem('username')) {
+        sessionStorage.setItem('username', '{{username}}');
+      }
+    </script>
   </body>
 </html>

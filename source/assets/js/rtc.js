@@ -1,7 +1,5 @@
 'use strict';
 
-// const constraints = {audio: true, video: true};
-
 const servers = {
   iceServers: [
     {urls: 'stun:stun.services.mozilla.com'},
@@ -20,6 +18,8 @@ const $form = document.querySelector('.js-chat-form');
 
 const socket = io.connect('http://localhost:3000');
 
+const username = sessionStorage.getItem('username');
+
 $form.addEventListener(
   'submit',
   (event) => {
@@ -27,11 +27,15 @@ $form.addEventListener(
     const value = $chatInput.value;
 
     if (value !== '') {
-      socket.emit('message', value);
+      socket.emit('message', JSON.stringify({text: value, user: username}));
+
       $chatBox.innerHTML +=
-        '<div class="chat__row"><p class="chat__sender">User:</p><p class="chat__comment">"' +
+        '<div class="chat__row"><p class="chat__sender">' +
+        username +
+        ':</p><p class="chat__comment">"' +
         value +
         '"</p></div>';
+
       $chatInput.value = '';
     }
   },
@@ -45,11 +49,15 @@ socket.on('join', (user) => {
     ' joined"</p></div>';
 });
 
-socket.on('message', (message) => {
+socket.on('message', (messageJson) => {
+  const data = JSON.parse(messageJson);
+
   $chatBox.innerHTML +=
-    '<div class="chat__row"><p class="chat__sender">User:</p><p class="chat__comment">"' +
-    message +
+    '<div class="chat__row"><p class="chat__sender">' +
+    data.user +
+    ':</p><p class="chat__comment">"' +
+    data.text +
     '"</p></div>';
 });
 
-socket.emit('join', 'User');
+socket.emit('join', username);

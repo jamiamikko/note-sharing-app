@@ -9,11 +9,7 @@
       href="../../assets/css/normalize.css"
     />
     <link rel="stylesheet" type="text/css" href="../../assets/css/style.css" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="../../assets/css/form.css"
-    />
+    <link rel="stylesheet" type="text/css" href="../../assets/css/form.css" />
     <link
       href="https://fonts.googleapis.com/css?family=Open+Sans"
       rel="stylesheet"
@@ -85,5 +81,10 @@
       </div>
     </div>
     <script src="../../assets/js/edit.min.js"></script>
+    <script type="text/javascript">
+      if (!sessionStorage.getItem('username')) {
+        sessionStorage.setItem('username', '{{username}}');
+      }
+    </script>
   </body>
 </html>
