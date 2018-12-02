@@ -9,7 +9,8 @@ router.get('/', (req, res) => {
   if (req.user) {
     return res.render('index', {
       title: 'Note sharing app - Home',
-      content: indexContent
+      content: indexContent,
+      username: req.user.username
     });
   }
 

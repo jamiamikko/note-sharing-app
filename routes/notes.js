@@ -222,20 +222,28 @@ router.delete('/:id', (req, res, next) => {
 });
 
 router.get('/new', (req, res) => {
-  return res.render('newNote', {
-    title: 'Note sharing app - New note',
-    content: newNoteContent
-  });
+  if (req.user) {
+    return res.render('newNote', {
+      title: 'Note sharing app - New note',
+      content: newNoteContent
+    });
+  }
+
+  res.redirect('/login');
 });
 
 router.get('/view/:id', (req, res) => {
-  const id = req.params.id;
+  if (req.user) {
+    const id = req.params.id;
 
-  return res.render('viewNote', {
-    title: 'Note sharing app - View note',
-    content: viewNoteCotent,
-    id: id
-  });
+    return res.render('viewNote', {
+      title: 'Note sharing app - View note',
+      content: viewNoteCotent,
+      id: id
+    });
+  }
+
+  res.redirect('/login');
 });
 
 router.get('/edit/:id', (req, res) => {
@@ -246,13 +254,17 @@ router.get('/edit/:id', (req, res) => {
       console.log(err);
       next(err);
     } else {
-      return res.render('editNote', {
-        title: 'Note sharing app - Edit note',
-        content: editNoteCotent,
-        noteTitle: data.title,
-        noteContent: data.content,
-        noteImage: data.image
-      });
+      if (req.user) {
+        return res.render('editNote', {
+          title: 'Note sharing app - Edit note',
+          content: editNoteCotent,
+          noteTitle: data.title,
+          noteContent: data.content,
+          noteImage: data.image
+        });
+      } else {
+        res.redirect('/login');
+      }
     }
   });
 });
