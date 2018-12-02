@@ -1,0 +1,13 @@
+{
+  "title": "Edit note",
+  "navigation": [
+    {
+      "title": "Home",
+      "href": "/"
+    },
+    {
+      "title": "New note",
+      "href": "/notes/new"
+    }
+  ]
+}

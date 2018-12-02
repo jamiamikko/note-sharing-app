@@ -9,6 +9,7 @@ const fs = require('fs');
 
 const newNoteContent = require('../views/newNote.json');
 const viewNoteCotent = require('../views/viewNote.json');
+const editNoteCotent = require('../views/editNote.json');
 
 const NotesData = require('../db/Note');
 
@@ -152,9 +153,31 @@ router.get('/new', (req, res) => {
 });
 
 router.get('/view/:id', (req, res) => {
+  const id = req.params.id;
+
   return res.render('viewNote', {
     title: 'Note sharing app - View note',
-    content: viewNoteCotent
+    content: viewNoteCotent,
+    id: id
+  });
+});
+
+router.get('/edit/:id', (req, res) => {
+  const id = req.params.id;
+
+  NotesData.findById(id, (err, data) => {
+    if (err) {
+      console.log(err);
+      next(err);
+    } else {
+      return res.render('editNote', {
+        title: 'Note sharing app - Edit note',
+        content: editNoteCotent,
+        noteTitle: data.title,
+        noteContent: data.content,
+        noteImage: data.image
+      });
+    }
   });
 });
 

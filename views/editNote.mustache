@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{ title }}</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../assets/css/normalize.css"
+    />
+    <link rel="stylesheet" type="text/css" href="../../assets/css/style.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../assets/css/new-note.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div id="app">
+      <nav class="main-navigation">
+        <ul class="main-navigation__items">
+          {{#content.navigation}}
+          <li class="main-navigation__item">
+            <a href="{{href}}">{{ title }}</a>
+          </li>
+          {{/content.navigation}}
+        </ul>
+      </nav>
+      <div class="main-content">
+        <h1 class="main-content__heading">{{ content.title }}</h1>
+        <div class="form-wrapper">
+          <div
+            class="message-box message-box--success js-success-message is-hidden"
+          >
+            Success
+          </div>
+          <div
+            class="message-box message-box--error js-error-message is-hidden"
+          >
+            Error
+          </div>
+          <form class="form js-add-note-form">
+            <label for="title" class="form__label">Edit title</label>
+            <input
+              name="title"
+              id="title"
+              type="text"
+              class="form__input"
+              value="{{ noteTitle }}"
+            />
+            <input type="hidden" name="creator" id="creator" value="mikkoj" />
+            <label for="content" class="form__label">Edit notes</label>
+            <textarea
+              name="content"
+              id="content"
+              minlength="1"
+              maxlength="2000"
+              row="6"
+              cols="200"
+              title="Notes"
+              class="form__textarea"
+            >
+              {{ noteContent }}</textarea
+            >
+            <img
+              class="form__image js-image-placeholder"
+              src="../../{{noteImage}}"
+              alt=""
+            />
+            <label for="image" class="form__label">Change image</label>
+            <input
+              type="file"
+              name="image"
+              id="image"
+              class="form__input js-image-input"
+            />
+            <button type="submit" class="form__button">Save</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="../../assets/js/edit.min.js"></script>
+  </body>
+</html>

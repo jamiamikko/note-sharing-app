@@ -18,8 +18,15 @@ const getNotesData = () =>
 
 const deleteCard = (id) => {
   fetch(baseUrl + '/' + id, {method: 'DELETE'})
-    .then((res) => {
-      console.log(res);
+    .then(() => {
+      getNotesData()
+        .then((json) => {
+          $noteList.innerHTML = '';
+          printCards(json);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     })
     .catch((err) => {
       console.log(err);
