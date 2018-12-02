@@ -26,7 +26,6 @@
   "homepage": "https://github.com/jamiamikko/note-sharing-app#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "cors": "^2.8.5",
     "dotenv": "^6.1.0",
     "eslint": "^5.9.0",
     "eslint-config-google": "^0.11.0",
