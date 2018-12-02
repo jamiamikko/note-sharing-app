@@ -103,6 +103,15 @@ router.post('/:id', upload, (req, res, next) => {
                   original: originalPath,
                   image: imagePath
                 });
+
+                note.save((err, updatedData) => {
+                  if (err) {
+                    console.log(err);
+                    next(err);
+                  } else {
+                    res.send(updatedData);
+                  }
+                });
               })
               .catch((err) => {
                 console.log(err);
@@ -118,17 +127,16 @@ router.post('/:id', upload, (req, res, next) => {
           title: req.body.title,
           content: req.body.content
         });
-      }
 
-      note.save((err, updatedData) => {
-        if (err) {
-          console.log(err);
-          next(err);
-        } else {
-          console.log(updatedData);
-          res.send(updatedData);
-        }
-      });
+        note.save((err, updatedData) => {
+          if (err) {
+            console.log(err);
+            next(err);
+          } else {
+            res.send(updatedData);
+          }
+        });
+      }
     }
   });
 });
