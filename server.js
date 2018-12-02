@@ -98,8 +98,6 @@ db.on('error', (err) => {
   console.log(err);
 });
 
-console.log();
-
 app.use('/', index);
 app.use('/notes', notes);
 app.use('/login', auth(passport));
