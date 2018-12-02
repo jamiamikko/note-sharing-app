@@ -4,10 +4,15 @@ require('dotenv').config();
 const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const session = require('express-session');
+const passport = require('passport');
 const socket = require('socket.io');
+
+require('./passport')(passport);
 
 const index = require('./routes/index');
 const notes = require('./routes/notes');
+const auth = require('./routes/auth');
 
 const express = require('express');
 const mustacheExpress = require('mustache-express');
@@ -18,6 +23,17 @@ app.engine('mustache', mustacheExpress());
 app.set('view engine', 'mustache');
 
 app.set('views', path.join(__dirname, 'views'));
+
+app.use(
+  session({
+    secret: process.env.SECRET,
+    resave: true,
+    saveUninitialized: true
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -72,8 +88,11 @@ db.on('error', (err) => {
   console.log(err);
 });
 
+console.log();
+
 app.use('/', index);
 app.use('/notes', notes);
+app.use('/login', auth(passport));
 
 app.use((err, req, res, next) => {
   console.log(err);

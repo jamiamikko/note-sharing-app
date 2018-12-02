@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{ title }}</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/form.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div id="app">
+      <nav class="main-navigation">
+        <ul class="main-navigation__items">
+          {{#content.navigation}}
+          <li class="main-navigation__item">
+            <a href="{{href}}">{{ title }}</a>
+          </li>
+          {{/content.navigation}}
+        </ul>
+      </nav>
+      <div class="main-content">
+        <h1 class="main-content__heading">{{ content.title }}</h1>
+        <div class="form-wrapper">
+          <form class="form js-register-form">
+            <label for="username" class="form__label">{{
+              content.labels.username
+            }}</label>
+            <input
+              name="username"
+              id="username"
+              type="text"
+              class="form__input"
+            />
+            <label for="password" class="form__label">{{
+              content.labels.password
+            }}</label>
+            <input
+              name="password"
+              id="password"
+              type="password"
+              class="form__input"
+            />
+            <button type="submit" class="form__button">
+              {{ content.button }}
+            </button>
+            <a class="form__button" href="/login">{{ content.link }}</a>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="../assets/js/login.min.js"></script>
+  </body>
+</html>

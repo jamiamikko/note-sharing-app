@@ -1,0 +1,19 @@
+{
+  "title": "Register",
+  "navigation": [
+    {
+      "title": "Login",
+      "href": "/login"
+    },
+    {
+      "title": "Register",
+      "href": "/register"
+    }
+  ],
+  "labels": {
+    "username": "Username",
+    "password": "Password"
+  },
+  "button": "Register",
+  "link": "Don't have an account? Register here."
+}
