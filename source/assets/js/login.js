@@ -7,7 +7,7 @@ const $inputs = {
   password: document.querySelector('#password')
 };
 
-const baseUrl = 'http://localhost:3000';
+const baseUrl = window.location.origin;
 
 const isValid = () =>
   $inputs.username.value !== '' && $inputs.password.value !== '';

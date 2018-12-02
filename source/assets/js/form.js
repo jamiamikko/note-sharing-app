@@ -9,7 +9,7 @@ const $inputs = {
   title: document.querySelector('#title'),
   content: document.querySelector('#content')
 };
-const baseUrl = 'http://localhost:3000/notes';
+const baseUrl = window.location.origin + '/notes';
 
 const isValid = () =>
   $inputs.title.value !== '' && $inputs.content.value !== '';

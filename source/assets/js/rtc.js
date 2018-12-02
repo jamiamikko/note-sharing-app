@@ -16,7 +16,7 @@ const $chatBox = document.querySelector('.js-chat-window');
 const $chatInput = document.querySelector('.js-input');
 const $form = document.querySelector('.js-chat-form');
 
-const socket = io.connect('http://localhost:3000');
+const socket = io.connect(window.location.origin);
 
 const username = sessionStorage.getItem('username');
 

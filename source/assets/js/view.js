@@ -1,6 +1,6 @@
 'use strict';
 
-const baseUrl = 'http://localhost:3000/notes';
+const baseUrl = window.location.origin + '/notes';
 const $heading = document.querySelector('.js-note-heading');
 const $image = document.querySelector('.js-note-image');
 const $date = document.querySelector('.js-note-date');

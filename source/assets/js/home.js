@@ -1,6 +1,6 @@
 'use strict';
 
-const baseUrl = 'http://localhost:3000/notes';
+const baseUrl = window.location.origin + '/notes';
 const $noteList = document.querySelector('.js-note-list');
 
 const getNotesData = () =>
