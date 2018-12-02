@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const User = require('../db/User');
 const indexContent = require('../views/index.json');
 const loginContent = require('../views/login.json');
 const registerContent = require('../views/register.json');
@@ -20,7 +21,31 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/register', (req, res) => {
-  res.render('register', {title: 'Login', content: registerContent});
+  res.render('register', {title: 'Register', content: registerContent});
+});
+
+router.put('/register', (req, res, next) => {
+  if (!req.body) {
+    throw new Error('Invalid request');
+  }
+
+  const data = {
+    username: req.body.username,
+    password: req.body.password
+  };
+
+  const userData = new User(data);
+
+  userData
+    .save()
+    .then((data) => {
+      console.log(data);
+      res.send(data);
+    })
+    .catch((err) => {
+      console.log(err);
+      next(err);
+    });
 });
 
 module.exports = router;
