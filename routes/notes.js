@@ -70,8 +70,6 @@ router.post('/:id', upload, (req, res, next) => {
     throw new Error('Invalid request');
   }
 
-  console.log(req.user);
-
   const id = req.params.id;
 
   NotesData.findById(id, (err, note) => {

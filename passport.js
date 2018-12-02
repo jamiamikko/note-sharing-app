@@ -18,21 +18,17 @@ module.exports = (passport) => {
           done(err);
         } else {
           if (data) {
-            console.log(data);
             const valid =
               data.username === username && data.password === password;
 
             if (valid) {
-              console.log('Valid');
               done(null, {
                 username: data.username
               });
             } else {
-              console.log('Not Valid');
               done(null, false, {message: 'Incorrect credentials'});
             }
           } else {
-            console.log('Not Found');
             done(null, false, {message: 'User not found'});
           }
         }

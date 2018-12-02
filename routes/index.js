@@ -40,7 +40,6 @@ router.put('/register', (req, res, next) => {
   userData
     .save()
     .then((data) => {
-      console.log(data);
       res.send(data);
     })
     .catch((err) => {

@@ -71,7 +71,6 @@ io.on('connection', (socket) => {
   });
 
   socket.on('join', (user) => {
-    console.log('User: ' + user);
     socket.broadcast.emit('join', user);
   });
 });
