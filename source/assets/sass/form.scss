@@ -13,13 +13,17 @@
   &__input {
     margin-bottom: 1rem;
     min-height: 2rem;
+    border: solid 1px $grayLight;
+    padding: 0.5rem;
   }
 
   &__textarea {
     margin-bottom: 1rem;
+    padding: 0.5rem;
     overflow: auto;
     vertical-align: top;
     resize: vertical;
+    border: solid 1px $grayLight;
   }
 
   &__label {

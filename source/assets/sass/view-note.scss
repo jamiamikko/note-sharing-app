@@ -106,10 +106,11 @@
     font-family: $baseFontFamily;
     font-size: 0.9rem;
     padding: 0.5rem;
+    border: solid 1px $grayLight;
 
     @include media-max($tablet-bp) {
       margin-bottom: 1rem;
-      width: 100%;
+      width: 95%;
     }
 
     &-wrapper {
@@ -117,6 +118,10 @@
       justify-content: space-between;
       flex-wrap: wrap;
       align-items: center;
+
+      @include media-max($tablet-bp) {
+        display: block;
+      }
     }
   }
 
