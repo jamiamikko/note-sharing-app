@@ -9,5 +9,10 @@
       "title": "New note",
       "href": "/notes/new"
     }
-  ]
+  ],
+  "card": {
+    "delete": "Delete",
+    "view": "View",
+    "by": "By: "
+  }
 }

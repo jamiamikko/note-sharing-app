@@ -9,5 +9,15 @@
       "title": "New note",
       "href": "/notes/new"
     }
-  ]
+  ],
+  "form": {
+    "success": "Success",
+    "error": "Error",
+    "labels": {
+      "title": "Edit title",
+      "notes": "Edit notes",
+      "image": "Change image"
+    },
+    "button": "Save"
+  }
 }

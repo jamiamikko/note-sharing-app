@@ -9,5 +9,14 @@
       "title": "New note",
       "href": "/notes/new"
     }
-  ]
+  ],
+  "card": {
+    "edit": "Edit",
+    "createdBy": "Created by:"
+  },
+  "chat": {
+    "title": "Share yout opinions on this note",
+    "input": "Type your comment here",
+    "button": "Send"
+  }
 }

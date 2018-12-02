@@ -40,22 +40,22 @@
               <a
                 href="/notes/edit/{{id}}"
                 class="view-note__button is-hidden js-edit-button"
-                >Edit</a
+                >{{ content.card.edit }}</a
               >
             </div>
             <img alt="" src="" class="view-note__image js-note-image" />
             <div class="view-note__text-wrapper">
               <p class="view-note__date js-note-date"></p>
-              <p class="view-note__creator js-note-creator">Created by:</p>
+              <p class="view-note__creator js-note-creator">
+                {{ content.card.createdBy }}
+              </p>
             </div>
             <p class="view-note__content js-note-content"></p>
           </div>
         </div>
         <div class="chat">
           <div class="chat__wrapper">
-            <h2 class="main-content__heading">
-              Share your opinions on this note
-            </h2>
+            <h2 class="main-content__heading">{{ content.chat.title }}</h2>
             <div class="chat__window js-chat-window"></div>
             <div class="chat__input-wrapper">
               <form action="" class="js-chat-form">
@@ -64,10 +64,10 @@
                   name="message"
                   id="message"
                   class="chat__input js-input"
-                  placeholder="Type your comment here"
+                  placeholder="{{ content.chat.input }}"
                 />
                 <button type="submit" class="chat__send-button js-send">
-                  Send
+                  {{ content.chat.button }}
                 </button>
               </form>
             </div>

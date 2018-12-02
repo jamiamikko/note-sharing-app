@@ -30,7 +30,7 @@
     </div>
     <script id="note-card-template" type="text/template">
       <div class="note-card" data-card-id="{id}">
-        <button class="js-delete-card note-card__button">Delete</button>
+        <button class="js-delete-card note-card__button">{{content.card.delete}}</button>
         <h2 class="note-card__heading">{heading}</h2>
         <img
           class="note-card__image"
@@ -39,18 +39,18 @@
         />
         <div class="note-card__info">
           <p class="note-card__date">{date}</p>
-          <p class="note-card__creator">By: {creator}</p>
+          <p class="note-card__creator">{{content.card.by}}{creator}</p>
         </div>
         <p class="note-card__teaser-text">
           {text}
         </p>
-        <a class="note-card__button" href="/notes/view/{id}">View</a>
+        <a class="note-card__button" href="/notes/view/{id}">{{content.card.view}}</a>
       </div>
     </script>
     <script src="../assets/js/home.min.js"></script>
     <script type="text/javascript">
-      if(!sessionStorage.getItem('username')) {
-        sessionStorage.setItem('username', '{{username}}')
+      if (!sessionStorage.getItem('username')) {
+        sessionStorage.setItem('username', '{{username}}');
       }
     </script>
   </body>

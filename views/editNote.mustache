@@ -33,15 +33,17 @@
           <div
             class="message-box message-box--success js-success-message is-hidden"
           >
-            Success
+            {{ content.form.success }}
           </div>
           <div
             class="message-box message-box--error js-error-message is-hidden"
           >
-            Error
+            {{ content.form.error }}
           </div>
           <form class="form js-add-note-form">
-            <label for="title" class="form__label">Edit title</label>
+            <label for="title" class="form__label">{{
+              content.form.labels.title
+            }}</label>
             <input
               name="title"
               id="title"
@@ -50,7 +52,9 @@
               value="{{ noteTitle }}"
             />
             <input type="hidden" name="creator" id="creator" value="mikkoj" />
-            <label for="content" class="form__label">Edit notes</label>
+            <label for="content" class="form__label">{{
+              content.form.labels.notes
+            }}</label>
             <textarea
               name="content"
               id="content"
@@ -68,14 +72,18 @@
               src="../../{{noteImage}}"
               alt=""
             />
-            <label for="image" class="form__label">Change image</label>
+            <label for="image" class="form__label">{{
+              content.form.labels.image
+            }}</label>
             <input
               type="file"
               name="image"
               id="image"
               class="form__input js-image-input"
             />
-            <button type="submit" class="form__button">Save</button>
+            <button type="submit" class="form__button">
+              {{ content.form.button }}
+            </button>
           </form>
         </div>
       </div>

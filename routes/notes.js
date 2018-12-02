@@ -227,7 +227,8 @@ router.get('/new', (req, res) => {
   if (req.user) {
     return res.render('newNote', {
       title: 'Note sharing app - New note',
-      content: newNoteContent
+      content: newNoteContent,
+      username: req.user.username
     });
   }
 
@@ -263,7 +264,8 @@ router.get('/edit/:id', (req, res) => {
           content: editNoteCotent,
           noteTitle: data.title,
           noteContent: data.content,
-          noteImage: data.image
+          noteImage: data.image,
+          username: req.user.username
         });
       } else {
         res.redirect('/login');
