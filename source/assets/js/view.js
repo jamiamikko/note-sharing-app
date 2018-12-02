@@ -6,6 +6,7 @@ const $image = document.querySelector('.js-note-image');
 const $date = document.querySelector('.js-note-date');
 const $creator = document.querySelector('.js-note-creator');
 const $content = document.querySelector('.js-note-content');
+const $editButton = document.querySelector('.js-edit-button');
 
 const getNoteById = (id) =>
   new Promise((resolve, reject) => {
@@ -32,6 +33,10 @@ const showContent = (data) => {
   $date.innerHTML = data.time;
   $creator.innerHTML += ' ' + data.creator;
   $content.innerHTML = data.content;
+
+  if (data.creator === sessionStorage.getItem('username')) {
+    $editButton.classList.remove('is-hidden');
+  }
 };
 
 const init = () => {
