@@ -11,7 +11,10 @@ const $editButton = document.querySelector('.js-edit-button');
 const getNoteById = (id) =>
   new Promise((resolve, reject) => {
     fetch(baseUrl + '/get/' + id, {
-      method: 'GET'
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
     })
       .then((res) => {
         resolve(res.json());

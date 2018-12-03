@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
-    "watch": "gulp"
+    "watch": "gulp",
+    "generate-doc": "apidoc -i routes/ -p docs/"
   },
   "repository": {
     "type": "git",

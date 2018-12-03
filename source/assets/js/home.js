@@ -6,7 +6,10 @@ const $noteList = document.querySelector('.js-note-list');
 const getNotesData = () =>
   new Promise((resolve, reject) => {
     fetch(baseUrl, {
-      method: 'GET'
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
     })
       .then((res) => {
         resolve(res.json());
@@ -17,7 +20,10 @@ const getNotesData = () =>
   });
 
 const deleteCard = (id) => {
-  fetch(baseUrl + '/' + id, {method: 'DELETE'})
+  fetch(baseUrl + '/' + id, {
+    method: 'DELETE',
+    headers: {'Content-Type': 'application/json'}
+  })
     .then(() => {
       getNotesData()
         .then((json) => {

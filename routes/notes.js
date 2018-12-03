@@ -13,6 +13,37 @@ const editNoteCotent = require('../views/editNote.json');
 
 const NotesData = require('../db/Note');
 
+/**
+ * @api {get} /notes Get all notes
+ * @apiName get-notes
+ * @apiGroup Notes
+ *
+ * @apiDescription Endpoint for getting all available notes.
+ *
+ * @apiHeader {String} Content-type application/json
+ *
+ * @apiSuccessExample Success-Response:
+ *    200 OK
+ *    [
+ *      {
+ *        "_id":"5c04147a9e28ac20656ed00b",
+ *        "time":"December 2nd 2018, 7:20",
+ *        "creator":"mikkoj",
+ *        "title":"Testing again",
+ *        "content":"Testing again",
+ *        "original":"uploads/f38a4b59-b06a-4f5e-9682-58cf2e19c026.png",
+ *        "thumbnail":"uploads/f38a4b59-b06a-4f5e-9682-58cf2e19c026_350x200.png",
+ *        "image":"uploads/f38a4b59-b06a-4f5e-9682-58cf2e19c026_768x432.png",
+ *        "__v":0
+ *      }
+ *    ]
+ * @apiErrorExample Error-Response:
+ *    400 Bad Request
+ *    {
+ *      "error": "Error message"
+ *    }
+ */
+
 router.get('/', (req, res, next) => {
   NotesData.find({}, (err, data) => {
     if (err) {
@@ -23,6 +54,37 @@ router.get('/', (req, res, next) => {
     }
   });
 });
+
+/**
+ * @api {get} /notes/get/:id Get note with id
+ * @apiName get-note-by-id
+ * @apiGroup Notes
+ *
+ * @apiDescription Endpoint for getting single note by id.
+ *
+ * @apiParam {String} id Notes unique id.
+ *
+ * @apiHeader {String} Content-type application/json
+ *
+ * @apiSuccessExample Success-Response:
+ *    200 OK
+ *     {
+ *       "_id":"5c04147a9e28ac20656ed00b",
+ *       "time":"December 2nd 2018, 7:20",
+ *       "creator":"mikkoj",
+ *       "title":"Testing again",
+ *       "content":"Testing again",
+ *       "original":"uploads/f38a4b59-b06a-4f5e-9682-58cf2e19c026.png",
+ *       "thumbnail":"uploads/f38a4b59-b06a-4f5e-9682-58cf2e19c026_350x200.png",
+ *       "image":"uploads/f38a4b59-b06a-4f5e-9682-58cf2e19c026_768x432.png",
+ *       "__v":0
+ *     }
+ * @apiErrorExample Error-Response:
+ *    400 Bad Request
+ *    {
+ *      "error": "Error message"
+ *    }
+ */
 
 router.get('/get/:id', (req, res, next) => {
   const id = req.params.id;
@@ -64,6 +126,57 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({storage: storage}).single('image');
+
+/**
+ * @api {post} /notes/:id Modify note with id
+ * @apiName modify-note-by-id
+ * @apiGroup Notes
+ *
+ * @apiDescription Endpoint for modifying single note by id.
+ *
+ * @apiParam {String} id Notes unique id.
+ *
+ * @apiHeader {String} Content-type  multipart/form-data
+ *
+ * @apiParamExample Request-Example
+ *
+ * ------WebKitFormBoundarytiHk8bSFedx4rzAW
+ * Content-Disposition: form-data; name="title"
+ *
+ * Testing editing
+ * ------WebKitFormBoundarytiHk8bSFedx4rzAW
+ * Content-Disposition: form-data; name="creator"
+ *
+ * mikkoj
+ * ------WebKitFormBoundarytiHk8bSFedx4rzAW
+ * Content-Disposition: form-data; name="content"
+ *
+ * Testing editing
+ * ------WebKitFormBoundarytiHk8bSFedx4rzAW
+ * Content-Disposition: form-data; name="image"; filename="Screen Shot 2018-08-10 at 13.02.29.png"
+ * Content-Type: image/png
+ *
+ * ------WebKitFormBoundarytiHk8bSFedx4rzAW--
+ *
+ * @apiSuccessExample Success-Response:
+ *    200 OK
+ *     {
+ *       "_id":"5c0566f29a220d0bddd60140",
+ *       "time":"December 3rd 2018, 7:25",
+ *       "creator":"mikkoj",
+ *       "title":"Testing editing",
+ *       "content":"Testing editing",
+ *       "original":"uploads/dd2de788-4f42-42e7-9a37-8442ae997cb9.png",
+ *       "thumbnail":"uploads/dd2de788-4f42-42e7-9a37-8442ae997cb9_350x200.png",
+ *       "image":"uploads/dd2de788-4f42-42e7-9a37-8442ae997cb9_768x432.png",
+ *       "__v":0
+ *     }
+ * @apiErrorExample Error-Response:
+ *    400 Bad Request
+ *    {
+ *      "error": "Error message"
+ *    }
+ */
 
 router.post('/:id', upload, (req, res, next) => {
   if (!req.body) {
@@ -141,6 +254,48 @@ router.post('/:id', upload, (req, res, next) => {
   });
 });
 
+/**
+ * @api {put} /notes/ Add new note
+ * @apiName add-new-note
+ * @apiGroup Notes
+ *
+ * @apiDescription Endpoint for adding new note.
+ *
+ *
+ * @apiHeader {String} Content-type  multipart/form-data
+ *
+ * @apiParamExample Request-Example
+ *
+ * ------WebKitFormBoundaryYKP338JWcjjtPu3I
+ * Content-Disposition: form-data; name="title"
+ *
+ * New note
+ * ------WebKitFormBoundaryYKP338JWcjjtPu3I
+ * Content-Disposition: form-data; name="creator"
+ *
+ * mikkoj
+ * ------WebKitFormBoundaryYKP338JWcjjtPu3I
+ * Content-Disposition: form-data; name="content"
+ *
+ * New note
+ * ------WebKitFormBoundaryYKP338JWcjjtPu3I
+ * Content-Disposition: form-data; name="image"; filename="yes.png"
+ * Content-Type: image/png
+ *
+ * ------WebKitFormBoundaryYKP338JWcjjtPu3I--
+ *
+ * @apiSuccessExample Success-Response:
+ *    200 OK
+ *    {
+ *      "status": "OK"
+ *    }
+ * @apiErrorExample Error-Response:
+ *    400 Bad Request
+ *    {
+ *      "error": "Error message"
+ *    }
+ */
+
 router.put('/', upload, (req, res, next) => {
   if (!req.body.title || !req.body.creator || !req.body.content) {
     throw new Error('Invalid request');
@@ -167,7 +322,7 @@ router.put('/', upload, (req, res, next) => {
 
             const noteData = new NotesData(data);
             noteData.save().then(() => {
-              res.sendStatus(200);
+              res.send(JSON.stringify({status: 'OK'}));
             });
           })
           .catch((err) => {
@@ -184,7 +339,7 @@ router.put('/', upload, (req, res, next) => {
     noteData
       .save()
       .then(() => {
-        res.sendStatus(200);
+        res.send(JSON.stringify({status: 'OK'}));
       })
       .catch((err) => {
         console.log(err);
@@ -192,6 +347,29 @@ router.put('/', upload, (req, res, next) => {
       });
   }
 });
+
+/**
+ * @api {delete} /notes/:id Delete note with id
+ * @apiName delete-note-with-id
+ * @apiGroup Notes
+ *
+ * @apiDescription Endpoint for deleting note with id.
+ *
+ * @apiParam {String} id Notes unique id.
+ *
+ * @apiHeader {String} Content-type  application/json
+ *
+ * @apiSuccessExample Success-Response:
+ *    200 OK
+ *    {
+ *      "status": "OK"
+ *    }
+ * @apiErrorExample Error-Response:
+ *    400 Bad Request
+ *    {
+ *      "error": "Error message"
+ *    }
+ */
 
 router.delete('/:id', (req, res, next) => {
   const id = req.params.id;
@@ -214,7 +392,7 @@ router.delete('/:id', (req, res, next) => {
           console.log(err);
           next(err);
         } else {
-          res.sendStatus(200);
+          res.send(JSON.stringify({status: 'OK'}));
         }
       });
     }
