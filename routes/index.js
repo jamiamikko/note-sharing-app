@@ -25,6 +25,35 @@ router.get('/register', (req, res) => {
   res.render('register', {title: 'Register', content: registerContent});
 });
 
+/**
+ * @api {put} /register Register new user
+ * @apiName register-user
+ * @apiGroup Users
+ *
+ * @apiDescription Endpoint for registering new user.
+ *
+ *
+ * @apiHeader {String} Content-type  application/json
+ *
+ * @apiParamExample {json} Request-Example
+ *
+ * {
+ *  "username": "user",
+ *  "password": "password"
+ * }
+ *
+ * @apiSuccessExample Success-Response:
+ *    200 OK
+ *    {
+ *      "status": "OK"
+ *    }
+ * @apiErrorExample Error-Response:
+ *    400 Bad Request
+ *    {
+ *      "error": "Error message"
+ *    }
+ */
+
 router.put('/register', (req, res, next) => {
   if (!req.body) {
     throw new Error('Invalid request');
@@ -40,7 +69,7 @@ router.put('/register', (req, res, next) => {
   userData
     .save()
     .then((data) => {
-      res.send(data);
+      res.send(JSON.stringify({status: 'OK'}));
     })
     .catch((err) => {
       console.log(err);
