@@ -1,5 +1,15 @@
 {
-  "extends": [
-    "config:base"
-  ]
+  "extends": ["config:base"],
+  "assignees": "jamiamikko",
+  "automerge": true,
+  "major": {
+    "automerge": false
+  },
+  "ignoreDeps": ["nodemon"],
+  "schedule": [
+    "after 10pm every weekday",
+    "before 5am every weekday",
+    "every weekend"
+  ],
+  "timezone": "Europe/Helsinki"
 }
